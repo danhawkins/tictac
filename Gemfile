@@ -17,5 +17,6 @@ group :test do
 	gem 'guard-coffeescript'
 	gem 'guard-livereload'
 	gem 'jasmine'
+	gem 'rspec-rails'
 end
 
