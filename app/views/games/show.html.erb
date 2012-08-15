@@ -1,0 +1,10 @@
+<h1>Tic Tac Toe</h1>
+<div id="gameboard">
+	<%- 3.times do |row| -%>
+	<div class="row">
+	<%- 3.times do |col| -%>
+		<div id="<%= row %>_<%= col %>" class="cell"></div>
+	<%- end -%>
+	</div>
+	<%- end -%>
+</div>

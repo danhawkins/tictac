@@ -9,5 +9,24 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
+
+@import 'mixins/rounding';
+@import 'mixins/shadows';
+
+body{
+ 	font-family: Helvetica, Verdana;
+ 	font-size: 2em;
+}
+
+#content_wrapper{
+	width:100%;
+}
+
+h1{
+	text-align: center;
+	font-size:1.5em;
+	color:#233;
+}
+
+@import 'game'

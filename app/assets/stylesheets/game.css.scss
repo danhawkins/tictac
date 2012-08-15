@@ -1,0 +1,25 @@
+#gameboard{
+	width:18em;
+	margin:0px auto;
+	display: table;
+	border-collapse:collapse;
+
+	@include shadow(0.2em, 0.2em, 2em, #ccc);
+
+	.row{
+		clear:both;
+		display:table-row;
+
+		.cell{
+			border: 1px solid #aaa;
+			background: #fff;
+			width:6em;
+			height:6em;
+			display:table-cell;
+
+			&:hover{
+				background:#afa;
+			}
+		}
+	}
+}
