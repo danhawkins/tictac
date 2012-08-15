@@ -36,7 +36,7 @@ Board = {
 	bindControls: ->
 		$('#reset_game').live 'click', (event) =>
 			this.resetGame()
-			false
+			return false
 
 	humanMove: (cell) ->
 		@moves[cell] = Board.HUMAN
@@ -93,10 +93,10 @@ Board = {
 				cell = _.reject(combination, (cell) =>
 					_.include(matches, cell)
 				)
-				if typeof @moves[cell] == 'undefined'
+				if typeof(@moves[cell]) == 'undefined'
 					@moves[cell] = this.COMPUTER
 					$('#'+cell).text(this.COMPUTER)
-					true
+					return true
 		false
 
 	tryComputerWin: ->
@@ -108,17 +108,17 @@ Board = {
 				cells = _.reject(combination, (cell) =>
 					_.include(matches, cell)
 				)
-				if typeof @moves[cells[0]] == 'undefined'
+				if typeof(@moves[cells[0]]) == 'undefined'
 					@moves[cells[0]] = this.COMPUTER
 					$('#'+cells[0]).text(this.COMPUTER)
-					true
-			false
+					return true
+		false
 
 	computerRandomMove: ->
 		cell_filled = false
 		_.each(this.COMBINATIONS, (cells) =>
 			_.each(cells, (cell) => 
-				if typeof @moves[cell] == 'undefined' && !cell_filled
+				if typeof(@moves[cell]) == 'undefined' && !cell_filled
 					cell_filled = true
 					@moves[cell] = this.COMPUTER
 					$('#'+cell).text(this.COMPUTER)
@@ -140,6 +140,7 @@ Board = {
 		$('#notice').text(message);
 		$('#notice').show().delay(3000).fadeOut()
 		$('#gameboard cell').die()
+		$('#reset_game').show()
 		this.bindScores()
 
 	bindScores: ->
