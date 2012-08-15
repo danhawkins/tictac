@@ -20,13 +20,25 @@ body{
 }
 
 #content_wrapper{
-	width:100%;
+	width:600px;
+	margin:0px auto;
 }
 
 h1{
 	text-align: center;
 	font-size:2.5em;
 	color:#233;
+}
+
+a{
+	text-decoration: none;
+	color: #383;
+}
+
+#notice{
+	color: #494;
+	position: absolute;
+	margin-top:-30px;
 }
 
 @import 'game'

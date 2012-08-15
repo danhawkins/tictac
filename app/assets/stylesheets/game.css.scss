@@ -1,6 +1,6 @@
 #gameboard{
 	width:400px;
-	margin:0px auto;
+	float:left;
 	display: table;
 	border-collapse:collapse;
 
@@ -25,5 +25,17 @@
 				background:#afa;
 			}
 		}
+	}
+}
+
+#game_data{
+	float:right;
+	border: 1px solid #aaa;
+	@include shadow(4px, 4px, 8px, #ccc);
+
+	padding:8px;
+	
+	table th{
+		text-align:right;
 	}
 }
