@@ -1,3 +1,5 @@
+#TODO: last one, fix logic for comp to win :/
+
 Board = {
 	COMBINATIONS:
 		[
