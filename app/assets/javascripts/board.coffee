@@ -25,26 +25,27 @@ Board = {
 	}
 
 	init: -> 
-		Board.bindCells()
-		Board.bindControls()
+		this.bindCells()
+		this.bindControls()
 
 	bindCells: ->
 		$('#gameboard .cell').live 'click', (event) =>
 			$('#reset_game').show if $('#reset_game').is(':hidden')
-			Board.humanMove(event.target.id)
+			this.humanMove(event.target.id)
 
 	bindControls: ->
-
+		$('#reset_game').live 'click', (event) =>
+			this.resetGame()
+			false
 
 	humanMove: (cell) ->
 		@moves[cell] = Board.HUMAN
 		$('#' + cell).text(Board.HUMAN);
-		if Board.checkForTie()
-			Board.gameEnded(0)
+		if this.checkForTie()
+			this.gameEnded(0)
 		else
-			result = Board.computerMove()
-			Board.gameEnded(result) if result != 1
-		end
+			result = this.computerMove()
+			this.gameEnded(result) if result != 1
 
 	resetGame: ->
 
