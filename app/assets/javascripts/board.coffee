@@ -49,10 +49,9 @@ Board = {
 
 	resetGame: ->
 		@moves = {}
-		$('#gameboard cell').text('')
+		$('#gameboard .cell').text('')
 		$('#reset_game').hide()
 		this.bindCells()
-
 
 	computerMove: ->
 		pre_state = this.checkGameState()
