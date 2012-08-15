@@ -49,6 +49,7 @@ Board = {
 
 	resetGame: ->
 		@moves = {}
+		$('#gameboard .cell').die()
 		$('#gameboard .cell').text('')
 		$('#reset_game').hide()
 		this.bindCells()
@@ -56,9 +57,11 @@ Board = {
 	computerMove: ->
 		pre_state = this.checkGameState()
 		if pre_state == 1
-			if !this.tryComputerWin() && !this.blockHumanWin()
-				this.computerRandomMove()
-			return this.checkGameState()
+			if !this.tryComputerWin()
+				if !this.blockHumanWin()
+					this.computerRandomMove()
+		
+		return this.checkGameState()
 		
 		pre_state
 
@@ -80,8 +83,7 @@ Board = {
 		for combination in this.COMBINATIONS
 			matches = _.intersect(found, combination)
 			return true if matches.length == 3
-
-		return false
+		false
 		
 	blockHumanWin: ->
 		found = this.findMatchesFor(this.HUMAN)
@@ -103,7 +105,7 @@ Board = {
 
 		for combination in this.COMBINATIONS
 			matches = _.intersect(found, combination)
-			if matches.length == 2
+			if matches.length > 0
 				cells = _.reject(combination, (cell) =>
 					_.include(matches, cell)
 				)
@@ -121,8 +123,10 @@ Board = {
 					cell_filled = true
 					@moves[cell] = this.COMPUTER
 					$('#'+cell).text(this.COMPUTER)
+					return true
 			)
 		)
+		false
 
 	gameEnded: (winner)->
 		switch winner
@@ -138,7 +142,7 @@ Board = {
 
 		$('#notice').text(message);
 		$('#notice').show().delay(3000).fadeOut()
-		$('#gameboard cell').die()
+		$('#gameboard .cell').die()
 		$('#reset_game').show()
 		this.bindScores()
 

@@ -10,9 +10,8 @@ var ProtoBoard = {
 	human_wins: 0,
 	ties: 0,
 
-	init: function(){
+	init: function(
 
-		ProtoBoard.current_game = [];
 		ProtoBoard.bindCells();
 		ProtoBoard.bindControls();
 	},
