@@ -55,21 +55,37 @@ Board = {
 
 
 	computerMove: ->
-
+		pre_state = this.checkGameState()
+		if pre_state == 1
+			if !this.tryComputerWin() && !this.blockHumanWin()
+				this.computerRandomMove()
+			return this.checkGameState()
+		
+		pre_state
 
 
 	checkGameState: ->
-
-
+		return 0 if this.checkForTie()
+		return this.HUMAN if this.checkForWin(this.HUMAN);
+		return this.COMPUTER if this.checkForWin(this.COMPUTER);
+		return 1
 
 	checkForTie: ->
+		return true if _.keys(@moves).length == 9
+		false
 
 
+	checkForWin: (xo) ->
+		found = _.select(_.keys(@moves), (item)=>
+			return @moves[item] == xo
+		)
 
-	checkForWin: ->
+		for combination in this.COMBINATIONS
+			matches = _.intersect(found, combination)
+			return true if matches.length ==3
 
-
-
+		return false
+		
 	blockHumanWin: ->
 
 
