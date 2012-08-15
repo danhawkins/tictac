@@ -55,7 +55,7 @@ var ProtoBoard = {
 
 	computerMove: function(){
 		pre_state = ProtoBoard.checkGameState();
-		if(pre_state == 1){
+		if(pre_state == 1){			
 			if(!ProtoBoard.tryComputerWin() && !ProtoBoard.blockHumanWin() ){
 				ProtoBoard.computerRandomMove();
 			}
@@ -118,7 +118,7 @@ var ProtoBoard = {
 		for(i = 0; i < ProtoBoard.combinations.length; i++){
 			combination = ProtoBoard.combinations[i];
 			matches = _.intersect(found_matches, combination);
-			if(matches.length > 0){
+			if(matches.length == 2){
 				cells = _.reject(combination, function(cell){ return _.include(matches, cell) });
 				if(ProtoBoard.moves[cells[0]] == undefined){
 					ProtoBoard.moves[cells[0]] = ProtoBoard.computer
