@@ -1,10 +1,10 @@
 #gameboard{
-	width:18em;
+	width:400px;
 	margin:0px auto;
 	display: table;
 	border-collapse:collapse;
 
-	@include shadow(0.2em, 0.2em, 2em, #ccc);
+	@include shadow(4px, 4px, 8px, #ccc);
 
 	.row{
 		clear:both;
@@ -13,9 +13,13 @@
 		.cell{
 			border: 1px solid #aaa;
 			background: #fff;
-			width:6em;
-			height:6em;
+			width:120px;
+			height:120px;
 			display:table-cell;
+			text-align:center;
+			font-family:courier;
+			font-size: 92px;
+			color: #666;
 
 			&:hover{
 				background:#afa;
