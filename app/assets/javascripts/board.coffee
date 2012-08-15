@@ -48,7 +48,10 @@ Board = {
 			this.gameEnded(result) if result != 1
 
 	resetGame: ->
-
+		@moves = {}
+		$('#gameboard cell').hide()
+		$('#reset_game').hide()
+		this.bindCells()
 
 
 	computerMove: ->
