@@ -49,7 +49,7 @@ Board = {
 
 	resetGame: ->
 		@moves = {}
-		$('#gameboard cell').hide()
+		$('#gameboard cell').text('')
 		$('#reset_game').hide()
 		this.bindCells()
 
