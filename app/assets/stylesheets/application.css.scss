@@ -15,28 +15,32 @@
 @import 'mixins/shadows';
 
 body{
+	color: #fff;
  	font-family: Helvetica, Verdana;
  	font-size: 18px;
+ 	background: url('/assets/background.jpg') no-repeat #000;
+ 	background-position: fixed;
+ 	@include text-shadow(1px, 1px, 2px, #333);
 }
 
 #content_wrapper{
-	width:600px;
+	width:700px;
 	margin:0px auto;
 }
 
 h1{
 	text-align: center;
 	font-size:2.5em;
-	color:#233;
+	color:#fff;
 }
 
 a{
 	text-decoration: none;
-	color: #383;
+	color: #afa;
 }
 
 #notice{
-	color: #494;
+	color: #afa;
 	position: absolute;
 	margin-top:-30px;
 }

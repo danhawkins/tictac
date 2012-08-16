@@ -1,6 +1,6 @@
 describe("Board", function(){
 
-	it("should block human win", function(){
+	it("should block human win when computer as not played", function(){
 		// X|X|O
 		//  | | 
 		//  | |
@@ -39,7 +39,7 @@ describe("Board", function(){
 	});
 
 
-	it('should block human win', function(){
+	it('should block human win when computer has played', function(){
 		// X|X|
 		// O| |
 		//  |O|

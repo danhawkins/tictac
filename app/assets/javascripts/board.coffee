@@ -51,7 +51,7 @@ Board = {
 	selectCell: (cell, xo) ->
 		if typeof(@moves[cell]) == 'undefined'
 			@moves[cell] = xo
-			$('#' + cell).text(xo);
+			$('#' + cell).html("<div class='" + xo + "'></div>");
 			return true
 		false
 
