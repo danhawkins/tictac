@@ -1,6 +1,6 @@
 == Welcome to TicTac
 
-A simple JS powered tic tac toe game implementation
+A simple JS / Coffeescript powered tic tac toe game implementation
 
 == Getting Started
 
