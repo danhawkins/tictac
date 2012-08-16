@@ -77,8 +77,8 @@ Board = {
 	computerMove: ->
 		pre_state = this.checkGameState()
 		if pre_state == 1
-			if !this.blockHumanWin()
-				if !this.tryComputerWin()
+			if !this.tryComputerWin()
+				if !this.blockHumanWin()
 					this.computerRandomMove()
 		
 		return this.checkGameState()
@@ -121,7 +121,7 @@ Board = {
 
 		for combination in this.COMBINATIONS
 			matches = _.intersect(found, combination)
-			if matches.length > 0
+			if matches.length == 2
 				cells = _.reject(combination, (cell) =>
 					_.include(matches, cell)
 				)
