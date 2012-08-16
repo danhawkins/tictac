@@ -139,7 +139,7 @@ Board = {
 				message = "It's a Tie!"
 			when this.COMPUTER
 				this.scores.computer += 1
-				message = "Opps, you lost that one!"
+				message = "Oops, you lost that one!"
 			when this.HUMAN
 				this.scores.human += 1
 				message = "Yay, you won!"
