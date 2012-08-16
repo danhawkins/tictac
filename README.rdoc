@@ -5,8 +5,9 @@ A simple JS / Coffeescript powered tic tac toe game implementation
 == Getting Started
 
 1. bundle
-2. bundle exec rails server
-3. http://localhost:3000
+2. bundle exec rake db:migrate
+3. bundle exec rails server
+4. http://localhost:3000
 
 == Running Test
 
