@@ -26,6 +26,7 @@ Board = {
 	}
 
 	init: ->
+		window.Board = this
 		this.bindCells()
 		this.bindControls()
 
@@ -160,5 +161,4 @@ Board = {
 			return @moves[item] == kind
 		)
 }
-
 Board.init()
