@@ -1,5 +1,9 @@
 describe("Board", function(){
 
+	beforeEach(function(){
+		Board.resetGame();
+	});
+
 	it("should block human win when computer as not played", function(){
 		// X|X|O
 		//  | | 
@@ -12,45 +16,40 @@ describe("Board", function(){
 		expect(Board.moves['0_2']).toEqual(Board.COMPUTER); 
 	});
 
-	it("should try computer win", function(){
-		//  | |
-		// O|O|O
-		//  | |
-		Board.moves['1_0'] = Board.COMPUTER
-		Board.moves['1_1'] = Board.COMPUTER
-
-		Board.tryComputerWin();
-
-		expect(Board.moves['1_2']).toEqual(Board.COMPUTER);
-	});
-
-	it('should try computer win if can win', function(){
-		// X|X|
+	it('should go for computer win when safe', function(){
+		// X| |
 		// O|O|
-		//  | |
+		// X| |
 		Board.moves['0_0'] = Board.HUMAN;
-		Board.moves['0_1'] = Board.HUMAN;
+		Board.moves['2_0'] = Board.HUMAN;
 		Board.moves['1_0'] = Board.COMPUTER;
 		Board.moves['1_1'] = Board.COMPUTER;
 
 		Board.computerMove();
 
+		console.log(Board.moves);
+
+
 		expect(Board.moves['1_2']).toEqual(Board.COMPUTER);
 	});
 
 
-	it('should block human win when computer has played', function(){
-		// X|X|
-		// O| |
+	it('should block human win', function(){
+		// X|O|
 		//  |O|
+		// X|X|
 		Board.moves['0_0'] = Board.HUMAN;
-		Board.moves['0_1'] = Board.HUMAN;
-		Board.moves['1_0'] = Board.COMPUTER;
-		Board.moves['2_1'] = Board.COMPUTER;
+		Board.moves['0_1'] = Board.COMPUTER;
+
+		Board.moves['1_1'] = Board.COMPUTER;
+		
+		Board.moves['2_0'] = Board.HUMAN;
+		Board.moves['2_1'] = Board.HUMAN;
 
 		Board.computerMove();
 
-		expect(Board.moves['0_2']).toEqual(Board.COMPUTER);
+		expect(Board.moves['2_2']).toEqual(Board.COMPUTER);
 	});
+
 
 });

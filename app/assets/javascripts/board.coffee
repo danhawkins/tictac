@@ -65,14 +65,11 @@ Board = {
 	computerMove: ->
 		pre_state = this.checkGameState()
 		if pre_state == 1
-			if !this.tryComputerWin()
-				if !this.blockHumanWin()
+			if !this.blockHumanWin()
+				if !this.tryComputerWin()
 					this.computerRandomMove()
 		
 		return this.checkGameState()
-		
-		pre_state
-
 
 	checkGameState: ->
 		return this.HUMAN if this.checkForWin(this.HUMAN);
