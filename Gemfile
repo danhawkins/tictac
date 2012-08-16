@@ -13,6 +13,7 @@ group :assets do
 end
 
 group :development, :test do
+	gem 'pry'
 	gem 'guard'
 	gem 'guard-coffeescript'
 	gem 'guard-livereload'

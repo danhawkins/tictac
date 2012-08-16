@@ -29,6 +29,17 @@ Board = {
 		window.Board = this
 		this.bindCells()
 		this.bindControls()
+		this.fetchScores()
+
+	fetchScores: ->
+		$.get('/game.json', (result)=>
+			this.scores = {
+				computer: result.computer,
+				human: result.human,
+				ties: result.ties
+			}
+			this.bindScores()
+		)
 
 	bindCells: ->
 		$('#gameboard .cell').live 'click',  (event) =>
@@ -51,6 +62,7 @@ Board = {
 	selectCell: (cell, xo) ->
 		if typeof(@moves[cell]) == 'undefined'
 			@moves[cell] = xo
+			console.log(xo)
 			$('#' + cell).html("<div class='" + xo + "'></div>");
 			return true
 		false
@@ -152,6 +164,11 @@ Board = {
 		$('#computer_wins').text(this.scores.computer)
 		$('#human_wins').text(this.scores.human)
 		$('#ties').text(this.scores.ties)
+		$.ajax({
+			type: 'PUT',
+			url: '/game.json',
+			data: this.scores
+		})
 
 	findMatchesFor: (kind) ->
 		_.select(_.keys(@moves), (item) =>
