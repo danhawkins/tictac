@@ -1,5 +1,4 @@
 #TODO: last one, fix logic for comp to win :/
-
 Board = {
 	COMBINATIONS:
 		[
@@ -26,14 +25,15 @@ Board = {
 		ties: 0
 	}
 
-	init: -> 
+	init: ->
 		this.bindCells()
 		this.bindControls()
 
 	bindCells: ->
-		$('#gameboard .cell').live 'click', (event) =>
+		$('#gameboard .cell').live 'click',  (event) =>
 			$('#reset_game').show if $('#reset_game').is(':hidden')
 			this.humanMove(event.target.id)
+		true
 
 	bindControls: ->
 		$('#reset_game').live 'click', (event) =>
@@ -41,13 +41,18 @@ Board = {
 			return false
 
 	humanMove: (cell) ->
-		@moves[cell] = Board.HUMAN
-		$('#' + cell).text(Board.HUMAN);
-		if this.checkForTie()
-			this.gameEnded(0)
-		else
-			result = this.computerMove()
+		if this.selectCell(cell, this.HUMAN)
+			result = this.checkGameState();
+			if result == 1
+				result = this.computerMove()
 			this.gameEnded(result) if result != 1
+
+	selectCell: (cell, xo) ->
+		if typeof(@moves[cell]) == 'undefined'
+			@moves[cell] = xo
+			$('#' + cell).text(xo);
+			return true
+		false
 
 	resetGame: ->
 		@moves = {}
@@ -69,9 +74,9 @@ Board = {
 
 
 	checkGameState: ->
-		return 0 if this.checkForTie()
 		return this.HUMAN if this.checkForWin(this.HUMAN);
 		return this.COMPUTER if this.checkForWin(this.COMPUTER);
+		return 0 if this.checkForTie()
 		return 1
 
 	checkForTie: ->
@@ -97,8 +102,7 @@ Board = {
 					_.include(matches, cell)
 				)
 				if typeof(@moves[cell]) == 'undefined'
-					@moves[cell] = this.COMPUTER
-					$('#'+cell).text(this.COMPUTER)
+					this.selectCell(cell, this.COMPUTER)
 					return true
 		false
 
@@ -112,8 +116,7 @@ Board = {
 					_.include(matches, cell)
 				)
 				if typeof(@moves[cells[0]]) == 'undefined'
-					@moves[cells[0]] = this.COMPUTER
-					$('#'+cells[0]).text(this.COMPUTER)
+					this.selectCell(cells[0], this.COMPUTER)
 					return true
 		false
 
@@ -123,8 +126,7 @@ Board = {
 			_.each(cells, (cell) => 
 				if typeof(@moves[cell]) == 'undefined' && !cell_filled
 					cell_filled = true
-					@moves[cell] = this.COMPUTER
-					$('#'+cell).text(this.COMPUTER)
+					this.selectCell(cell, this.COMPUTER)
 					return true
 			)
 		)
