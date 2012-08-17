@@ -13,3 +13,6 @@ A simple JS / Coffeescript powered tic tac toe game implementation
 
 1. bundle exec rake jasmine
 2. http://localhost:8888
+
+== Thanks to
+https://github.com/adomokos for https://github.com/adomokos/TicTacToe-Game which served as a starting point for the game logic
